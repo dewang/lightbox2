@@ -48,12 +48,13 @@ lightbox = new Lightbox options
   LightboxOptions = (function() {
 
     function LightboxOptions() {
-      this.fileLoadingImage = 'images/loading.gif';
-      this.fileCloseImage = 'images/close.png';
+      this.fileLoadingImage = 'assets/img/loading.gif';
+      this.fileCloseImage = 'assets/img/close.png';
       this.resizeDuration = 700;
       this.fadeDuration = 500;
       this.labelImage = "Image";
       this.labelOf = "of";
+      this.responsive = true;
     }
 
     return LightboxOptions;
@@ -96,16 +97,10 @@ lightbox = new Lightbox options
       }).append($('<img/>', {
         "class": 'lb-image'
       }), $('<div/>', {
-        "class": 'lb-nav'
-      }).append($('<a/>', {
-        "class": 'lb-prev'
-      }), $('<a/>', {
-        "class": 'lb-next'
-      })), $('<div/>', {
         "class": 'lb-loader'
       }).append($('<a/>', {
         "class": 'lb-cancel'
-      }).append($('<img/>', {
+      }).append($('<img />', {
         src: this.options.fileLoadingImage
       }))))), $('<div/>', {
         "class": 'lb-dataContainer'
@@ -146,6 +141,10 @@ lightbox = new Lightbox options
         return false;
       });
       $lightbox.find('.lb-loader, .lb-close').on('click', function(e) {
+        _this.end();
+        return false;
+      });
+      $lightbox.find('.lb-image').on('click', function(e) {
         _this.end();
         return false;
       });
@@ -203,7 +202,7 @@ lightbox = new Lightbox options
         $image.attr('src', _this.album[imageNumber].link);
         $image.width = preloader.width;
         $image.height = preloader.height;
-        return _this.sizeContainer(preloader.width, preloader.height);
+        return _this.options.responsive === true ? _this.showImage() : _this.sizeContainer($image.width, $image.height);
       };
       preloader.src = this.album[imageNumber].link;
       this.currentImageIndex = imageNumber;

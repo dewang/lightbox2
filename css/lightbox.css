@@ -3,10 +3,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 50;
   background-color: black;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
   opacity: 0.85;
+  -moz-opacity: 0.85;
+  filter:alpha(opacity=8);
   display: none;
 }
 
@@ -35,9 +36,10 @@
 .lb-outerContainer {
   position: relative;
   background-color: white;
+  z-index: 10000;
   *zoom: 1;
-  width: 250px;
-  height: 250px;
+  width: 90%;
+  height: 90%;
   margin: 0 auto;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -122,7 +124,7 @@
 /* line 88, ../sass/lightbox.sass */
 .lb-dataContainer {
   margin: 0 auto;
-  padding-top: 5px;
+  /*padding-top: 5px;*/
   *zoom: 1;
   width: 100%;
   -moz-border-radius-bottomleft: 4px;
